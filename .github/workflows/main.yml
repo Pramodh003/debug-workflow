@@ -1,0 +1,27 @@
+name: debugging demo
+
+on:
+  push:
+  workflow_dispatch: 
+
+env:
+  USER_1: "foo-user"
+  USER_2: "bar-user"
+
+jobs:
+  debuh_job:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout to repositroy
+       uses: actions/checkout@v4
+    
+     - name: Set user1 as username
+       run: echo "USERNAME=$USER_1"  >> GITHUB_ENV
+
+     - name: print username
+       run: | 
+        echo "Username ======= $USERNAME"
+        exit 1
+
+     - name: Set user2 as username
+       run: echo "$USER_2" 
